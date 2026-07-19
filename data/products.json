@@ -1,0 +1,74 @@
+[
+  {
+    "id": "1",
+    "name": "Gold Link Bracelet",
+    "description": "22K Gold • 10.5g",
+    "price": 64500,
+    "image": "/images/Gold Link Bracelet.jpg",
+    "tags": ["BIS HALLMARK", "22K PURITY"],
+    "rating": 4.7
+  },
+  {
+    "id": "2",
+    "name": "Diamond Solitaire Pendant",
+    "description": "18K White Gold • 5.4g",
+    "price": 112000,
+    "image": "/images/Diamond Solitaire Pendant.jpg",
+    "tags": ["GIA CERTIFIED", "LIMITED EDITION"],
+    "rating": 4.9
+  },
+  {
+    "id": "3",
+    "name": "Aurelia Gold Necklace",
+    "description": "18K Gold • 14.2g",
+    "price": 155000,
+    "image": "/images/Aurelia Gold Necklace.jpg",
+    "tags": ["CERTIFIED", "HERITAGE"],
+    "rating": 4.9
+  },
+  {
+    "id": "4",
+    "name": "Antique Filigree Bangle",
+    "description": "22K Gold • 24.5g",
+    "price": 195000,
+    "image": "/images/Antique Filigree Bangle.avif",
+    "tags": ["EXCLUSIVE", "22K PURITY"],
+    "rating": 4.9
+  },
+  {
+    "id": "5",
+    "name": "Celestial Pearl Studs",
+    "description": "18K Gold • 3.8g",
+    "price": 48000,
+    "image": "/images/Celestial Pearl Studs.avif",
+    "tags": ["CERTIFIED", "AKOYA PEARL"],
+    "rating": 4.8
+  },
+  {
+    "id": "6",
+    "name": "Emerald Teardrops",
+    "description": "18K Gold • 6.2g",
+    "price": 125000,
+    "image": "/images/Emerald Teardrops.jpg",
+    "tags": ["CERTIFIED", "ZAMBIAN EMERALD"],
+    "rating": 4.9
+  },
+  {
+    "id": "7",
+    "name": "Hammered Aura Ring",
+    "description": "22K Gold • 7.5g",
+    "price": 52000,
+    "image": "/images/Hammered Aura Ring.jpg",
+    "tags": ["BIS HALLMARK", "22K PURITY"],
+    "rating": 4.8
+  },
+  {
+    "id": "8",
+    "name": "Elegant Gold Necklace",
+    "description": "22K Gold • 18.4g",
+    "price": 124000,
+    "image": "/images/Necklace.jpg",
+    "tags": ["BIS HALLMARK", "22K PURITY"],
+    "rating": 4.9
+  }
+]
