@@ -1,7 +1,7 @@
 "use client";
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Search, LogIn, UserPlus, User } from 'lucide-react';
+import { Search, LogIn, UserPlus, User, X } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
 export default function Header() {
