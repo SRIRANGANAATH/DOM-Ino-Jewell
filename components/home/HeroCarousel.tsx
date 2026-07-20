@@ -91,7 +91,7 @@ export default function HeroCarousel() {
   const renderSlideContent = (slide: typeof slides[0], index: number) => {
     const isActive = index === selectedIndex;
 
-    const contentAnimation = {
+    const contentAnimation: any = {
       initial: { opacity: 0, y: 20 },
       animate: isActive ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 },
       transition: { duration: 0.8, delay: 0.3, ease: "easeOut" },
