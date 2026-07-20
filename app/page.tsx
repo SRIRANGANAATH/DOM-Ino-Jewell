@@ -88,21 +88,21 @@ export default function HomePage() {
       </div>
 
       {/* Info Section */}
-      <section className="bg-white py-20 px-4">
-        <div className="container grid grid-cols-1 md:grid-cols-3 gap-12">
-          <div className="md:border-r md:border-gray-200 pr-8">
+      <section className="bg-[#FAF8F5] py-24 px-4 border-y border-[#0B2B26]/5">
+        <div className="container grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 max-w-7xl mx-auto">
+          <div className="bg-white p-10 md:p-12 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-[#0B2B26]/5 hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] hover:-translate-y-1 transition-all duration-300">
             <h3 className="text-2xl mb-6 text-[#0B2B26]" style={{ fontFamily: 'var(--font-heading)' }}>Pure Craftsmanship</h3>
             <p className="text-[#4A5568] leading-relaxed text-sm">
               All designs are cast in 100% ethically sourced recycled gold. We refuse mass assembly lines, employing multi-generational master smiths instead.
             </p>
           </div>
-          <div className="md:border-r md:border-gray-200 pr-8">
+          <div className="bg-white p-10 md:p-12 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-[#0B2B26]/5 hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] hover:-translate-y-1 transition-all duration-300">
             <h3 className="text-2xl mb-6 text-[#0B2B26]" style={{ fontFamily: 'var(--font-heading)' }}>Full Transparency</h3>
             <p className="text-[#4A5568] leading-relaxed text-sm">
               We break down the cost of every single gram of gold, diamond weight, and artisan labor so you know exactly where your investment resides.
             </p>
           </div>
-          <div>
+          <div className="bg-white p-10 md:p-12 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-[#0B2B26]/5 hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] hover:-translate-y-1 transition-all duration-300">
             <h3 className="text-2xl mb-6 text-[#0B2B26]" style={{ fontFamily: 'var(--font-heading)' }}>The Forever Heritage</h3>
             <p className="text-[#4A5568] leading-relaxed text-sm">
               Registered with state certifications, every item is backed by our lifetime buyback guarantee and gold purity certification.
