@@ -45,7 +45,7 @@ export default function Header() {
 
         {/* Left Side: Tagline */}
         <div className="flex-1 flex justify-center items-center overflow-hidden pr-2">
-          <span className="text-[10px] sm:text-[12px] md:text-[15px] font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#8A7043] via-[#b89a5e] to-[#0E332E] italic font-serif tracking-wider md:tracking-widest whitespace-nowrap">
+          <span className="hidden sm:inline text-[12px] sm:text-[14px] md:text-[18px] font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#8A7043] via-[#b89a5e] to-[#0E332E] italic font-serif tracking-wider md:tracking-widest whitespace-nowrap">
             Crafting Radical Purity.
           </span>
         </div>
@@ -61,7 +61,7 @@ export default function Header() {
         <div className="flex gap-6 lg:gap-10 items-center flex-1 justify-end pl-2">
 
           {/* Spinning Coin */}
-          <div className="hidden sm:block w-9 h-9 md:w-12 md:h-12 relative shrink-0" style={{ perspective: '1000px' }}>
+          <div className="block w-9 h-9 md:w-12 md:h-12 relative shrink-0" style={{ perspective: '1000px' }}>
             <div className="w-full h-full animate-spin-slow-3d relative" style={{ transformStyle: 'preserve-3d' }}>
               <img src="/picture/shop/gold coin.jpg" alt="Gold Coin Front" className="absolute w-full h-full rounded-full object-cover" style={{ backfaceVisibility: 'hidden' }} />
               <img src="/picture/shop/gold 2.jpg" alt="Gold Coin Back" className="absolute w-full h-full rounded-full object-cover" style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }} />
