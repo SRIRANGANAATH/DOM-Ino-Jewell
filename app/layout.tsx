@@ -22,6 +22,8 @@ export const metadata: Metadata = {
   description: "Heritage minimalism and pure craftsmanship in every creation.",
 };
 
+import Footer from "../components/Footer";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -29,10 +31,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
-      <body className="pb-[70px] md:pb-0">
+      <body className="pb-[70px] md:pb-0 flex flex-col min-h-screen">
         <StoreProvider>
           <Header />
-          {children}
+          <main className="flex-grow">
+            {children}
+          </main>
+          <Footer />
           <BottomNavbar />
           <AIChatBot />
         </StoreProvider>

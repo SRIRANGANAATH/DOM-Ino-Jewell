@@ -40,10 +40,11 @@ export default function HomePage() {
   const featuredProduct = products.length > 0 ? products.find(p => p.id === '8') || products[0] : null;
 
   return (
-    <main>
+    <main className="bg-[#FAF8F5]">
       <HeroCarousel />
+      
       {/* Hero Section */}
-      <section className="relative h-[80vh] w-full flex flex-col items-center justify-center text-center px-4 overflow-hidden">
+      <section className="relative h-[75vh] w-full flex flex-col items-center justify-center text-center px-4 overflow-hidden my-24 md:my-32 shadow-2xl border-y border-[#0B2B26]/5">
         {/* We use a placeholder background color if the image is missing, but assume public/images/hero-pearl-necklace.jpg will be added */}
         <div 
           className="absolute inset-0 z-0 bg-cover bg-center"
@@ -112,7 +113,7 @@ export default function HomePage() {
       </section>
 
       {/* Featured Story */}
-      <section className="bg-[#0B2B26] text-[#F9F6F0] mb-16">
+      <section className="bg-[#0B2B26] text-[#F9F6F0]">
         <div className="container py-20 px-4 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div className="w-full h-[500px] bg-[#d9d9d9] relative">
              <div 
