@@ -5,6 +5,8 @@ import Header from "../components/Header";
 import BottomNavbar from "../components/BottomNavbar";
 import { StoreProvider } from "@/context/StoreContext";
 
+import AIChatBot from "../components/AIChatBot";
+
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
@@ -32,6 +34,7 @@ export default function RootLayout({
           <Header />
           {children}
           <BottomNavbar />
+          <AIChatBot />
         </StoreProvider>
       </body>
     </html>

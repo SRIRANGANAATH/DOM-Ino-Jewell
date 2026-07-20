@@ -13,7 +13,7 @@ export default function Header() {
   useEffect(() => {
     setIsLoggedIn(document.cookie.includes('auth_token'));
   }, [pathname]);
-  
+
   const navItems = [
     { name: 'HOME', path: '/' },
     { name: 'SHOP', path: '/shop' },
@@ -34,7 +34,7 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 bg-[#F9F6F0]/95 backdrop-blur-md border-b border-[#0E332E]/10 shadow-sm flex flex-col">
       <div className="w-full px-6 md:px-12 lg:px-16 flex justify-between items-center h-[85px]">
-        
+
         {/* Left Side: Tagline Only */}
         <div className="flex-1 flex justify-start items-center overflow-hidden pr-2">
           <span className="hidden lg:block text-[13px] font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#8A7043] via-[#b89a5e] to-[#0E332E] italic font-serif tracking-widest whitespace-nowrap">
@@ -51,15 +51,15 @@ export default function Header() {
 
         {/* Right Side: Search & Login */}
         <div className="flex gap-6 lg:gap-10 items-center flex-1 justify-end pl-2">
-          
+
           {/* Search Bar / Icon */}
           <div className="relative flex items-center">
             {isSearchOpen ? (
               <form onSubmit={handleSearch} className="flex items-center animate-in slide-in-from-right-4 fade-in duration-300">
-                <input 
-                  type="text" 
+                <input
+                  type="text"
                   autoFocus
-                  placeholder="Search collections..." 
+                  placeholder="Search collections..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className="w-32 md:w-48 lg:w-64 border-b-2 border-[#8A7043] bg-transparent outline-none text-sm px-2 py-1 text-[#0E332E] placeholder:text-[#0E332E]/40 font-medium transition-all"
@@ -101,8 +101,8 @@ export default function Header() {
       <div className="w-full px-6 md:px-12 lg:px-16 pb-4 hidden md:flex justify-start border-t border-[#0E332E]/5 pt-4 mt-2">
         <nav className="flex gap-6 lg:gap-12 items-center overflow-x-auto scrollbar-hide">
           {navItems.map((item) => (
-            <Link 
-              key={item.name} 
+            <Link
+              key={item.name}
               href={item.path}
               className={`group relative text-[11px] lg:text-[13px] uppercase tracking-[0.2em] font-bold transition-all duration-300 whitespace-nowrap py-1
                 ${pathname === item.path ? 'text-[#8A7043]' : 'text-[#0E332E]/70 hover:text-[#0E332E]'}

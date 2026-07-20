@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function HomePage() {
   const [rates, setRates] = useState<any[]>([]);
@@ -35,7 +36,7 @@ export default function HomePage() {
     return () => clearInterval(interval);
   }, []);
 
-  const featuredProduct = products.length > 0 ? products[0] : null;
+  const featuredProduct = products.length > 0 ? products.find(p => p.id === '8') || products[0] : null;
 
   return (
     <main>
@@ -58,9 +59,9 @@ export default function HomePage() {
           <p className="text-[#4A5568] text-sm md:text-base max-w-2xl mx-auto mb-10 leading-relaxed font-medium">
             Every creation is a narrative of slow luxury. Crafted in the finest purity gold, verified for provenance, and priced with transparent integrity.
           </p>
-          <button className="bg-[#0B2B26] text-[#F9F6F0] px-8 py-4 uppercase text-sm tracking-widest font-bold hover:bg-[#071f1b] transition-colors">
+          <Link href="/shop" className="inline-block bg-[#0B2B26] text-[#F9F6F0] px-8 py-4 uppercase text-sm tracking-widest font-bold hover:bg-[#071f1b] transition-colors">
             Explore the Collection
-          </button>
+          </Link>
         </div>
       </section>
 
@@ -126,12 +127,12 @@ export default function HomePage() {
               {featuredProduct ? featuredProduct.description : 'Carved delicately with high-polished geometry, the Elegant Gold Necklace is built for slow lifetimes. Cast with a traditional BIS Hallmark ensuring authentic 22K pure yellow gold.'}
             </p>
             <div className="flex gap-4">
-              <button className="bg-[#C59E3F] hover:bg-[#b58d2f] text-white px-8 py-4 uppercase text-xs tracking-widest font-bold transition-colors">
+              <Link href={featuredProduct ? `/product/${featuredProduct.id}` : '/shop'} className="bg-[#C59E3F] flex items-center justify-center hover:bg-[#b58d2f] text-white px-8 py-4 uppercase text-xs tracking-widest font-bold transition-colors">
                 Browse Piece
-              </button>
-              <button className="border border-white text-white hover:bg-white/10 px-8 py-4 uppercase text-xs tracking-widest font-bold transition-colors">
+              </Link>
+              <Link href="/about" className="border flex items-center justify-center border-white text-white hover:bg-white/10 px-8 py-4 uppercase text-xs tracking-widest font-bold transition-colors">
                 Our Heritage
-              </button>
+              </Link>
             </div>
           </div>
         </div>
