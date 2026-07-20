@@ -33,20 +33,20 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50 bg-[#F9F6F0]/95 backdrop-blur-md border-b border-[#0E332E]/10 shadow-sm flex flex-col">
-      <div className="w-full px-6 md:px-12 lg:px-16 flex justify-between items-center h-[85px]">
+      <div className="w-full px-4 md:px-12 lg:px-16 flex justify-between items-center h-[85px]">
 
-        {/* Left Side: Tagline Only */}
-        <div className="flex-1 flex justify-start items-center overflow-hidden pr-2">
-          <span className="hidden lg:block text-[13px] font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#8A7043] via-[#b89a5e] to-[#0E332E] italic font-serif tracking-widest whitespace-nowrap">
+        {/* Left Side: Tagline */}
+        <div className="flex-1 flex justify-center items-center overflow-hidden pr-2">
+          <span className="text-[8px] sm:text-[10px] md:text-[13px] font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#8A7043] via-[#b89a5e] to-[#0E332E] italic font-serif tracking-wider md:tracking-widest whitespace-nowrap">
             Crafting Radical Purity.
           </span>
         </div>
 
         {/* Center: Logo */}
-        <Link href="/" className="flex items-center gap-1.5 flex-shrink-0 text-center px-2 hover:opacity-80 transition-opacity">
-          <span className="font-heading text-3xl md:text-4xl font-bold tracking-[0.15em] text-[#8A7043]">DOM</span>
-          <img src="/images/logo3.png" alt="Domino Logo" className="h-10 md:h-12 w-auto object-contain translate-y-[2px]" />
-          <span className="font-heading text-3xl md:text-4xl font-bold tracking-[0.15em] text-[#8A7043]">INO</span>
+        <Link href="/" className="flex items-center gap-1 md:gap-1.5 flex-shrink-0 text-center px-1 md:px-2 hover:opacity-80 transition-opacity">
+          <span className="font-heading text-2xl md:text-4xl font-bold tracking-[0.1em] md:tracking-[0.15em] text-[#8A7043]">DOM</span>
+          <img src="/images/logo3.png" alt="Domino Logo" className="h-8 md:h-12 w-auto object-contain translate-y-[2px]" />
+          <span className="font-heading text-2xl md:text-4xl font-bold tracking-[0.1em] md:tracking-[0.15em] text-[#8A7043]">INO</span>
         </Link>
 
         {/* Right Side: Search & Login */}

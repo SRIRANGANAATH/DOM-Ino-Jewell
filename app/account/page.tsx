@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import {
   Heart, ShoppingBag, Calendar, PiggyBank, Bell, Headset,
-  Star, Award, Check, CheckCircle, MapPin, Clock, Edit2, Wallet, Search, User, ChevronRight, Menu, Package
+  Star, Award, Check, CheckCircle, MapPin, Clock, Edit2, Wallet, Search, User, ChevronRight, Menu, Package, X
 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import Odometer from '@/components/Odometer';
@@ -70,7 +70,7 @@ function ContributionWheel({ value, onChange }: { value: number, onChange: (v: n
   );
 }
 
-function FadeInSection({ children, delay = 0 }: { children: React.ReactNode, delay?: number }) {
+function FadeInSection({ children, delay = 0, className = "" }: { children: React.ReactNode, delay?: number, className?: string }) {
   const [isVisible, setIsVisible] = useState(false);
   const domRef = useRef<HTMLDivElement>(null);
 
@@ -91,7 +91,7 @@ function FadeInSection({ children, delay = 0 }: { children: React.ReactNode, del
     <div
       ref={domRef}
       className={`transition-all duration-[1200ms] ease-out transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'
-        }`}
+        } ${className}`}
       style={{ transitionDelay: `${delay}ms` }}
     >
       {children}
@@ -106,6 +106,8 @@ export default function AccountPage() {
   const [goldRate, setGoldRate] = useState(7250);
   const [isEditingName, setIsEditingName] = useState(false);
   const [userName, setUserName] = useState("Eleanor Harrington");
+  const [userEmail, setUserEmail] = useState("eleanor@example.com");
+  const [userPhone, setUserPhone] = useState("+91 9876543210");
   const [userImage, setUserImage] = useState("/images/person.jpg");
   const [showRescheduleModal, setShowRescheduleModal] = useState(false);
   const [showRebookModal, setShowRebookModal] = useState(false);
@@ -144,7 +146,7 @@ export default function AccountPage() {
         <div className="grid lg:grid-cols-2 gap-6 items-stretch">
 
           {/* Profile Section (Left) */}
-          <div className="flex flex-col justify-start">
+          <div className="flex flex-col justify-between h-full gap-6">
             <FadeInSection>
               <h1 className="font-heading text-3xl text-[#0E332E] mb-6 lg:text-left text-center">Account</h1>
               <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6 text-center sm:text-left">
@@ -166,23 +168,46 @@ export default function AccountPage() {
 
                 <div className="flex flex-col items-center sm:items-start pt-2">
                   {isEditingName ? (
-                    <div className="flex items-center gap-2 mb-2">
+                    <div className="flex flex-col gap-2 mb-2 w-full max-w-[240px]">
+                      <div className="flex items-center gap-2">
+                        <input 
+                          type="text" 
+                          value={userName} 
+                          onChange={(e) => setUserName(e.target.value)} 
+                          className="font-heading text-xl text-[#0E332E] border-b-2 border-[#8A7043] bg-transparent outline-none px-1 py-0.5 w-full"
+                          autoFocus
+                          placeholder="Name"
+                        />
+                        <button 
+                          onClick={() => setIsEditingName(false)}
+                          className="bg-[#8A7043] text-white p-1 rounded hover:bg-[#0E332E] transition-colors shrink-0"
+                        >
+                          <Check size={16} />
+                        </button>
+                      </div>
                       <input 
-                        type="text" 
-                        value={userName} 
-                        onChange={(e) => setUserName(e.target.value)} 
-                        className="font-heading text-xl text-[#0E332E] border-b-2 border-[#8A7043] bg-transparent outline-none px-1 py-0.5"
-                        autoFocus
+                        type="email" 
+                        value={userEmail} 
+                        onChange={(e) => setUserEmail(e.target.value)} 
+                        className="text-sm text-[#0E332E] border-b border-[#8A7043] bg-transparent outline-none px-1 py-0.5 w-full"
+                        placeholder="Email Address"
                       />
-                      <button 
-                        onClick={() => setIsEditingName(false)}
-                        className="bg-[#8A7043] text-white p-1 rounded hover:bg-[#0E332E] transition-colors"
-                      >
-                        <Check size={16} />
-                      </button>
+                      <input 
+                        type="tel" 
+                        value={userPhone} 
+                        onChange={(e) => setUserPhone(e.target.value)} 
+                        className="text-sm text-[#0E332E] border-b border-[#8A7043] bg-transparent outline-none px-1 py-0.5 w-full"
+                        placeholder="Phone Number"
+                      />
                     </div>
                   ) : (
-                    <h2 className="font-heading text-2xl text-[#0E332E] mb-2">{userName}</h2>
+                    <>
+                      <h2 className="font-heading text-2xl text-[#0E332E] mb-1">{userName}</h2>
+                      <div className="flex flex-col gap-0.5 mb-2 text-sm text-[#0E332E]/70 font-medium">
+                        <span>{userPhone}</span>
+                        <span>{userEmail}</span>
+                      </div>
+                    </>
                   )}
                   <div className="flex items-center gap-3 mb-4">
                     <span className="text-[9px] font-bold tracking-widest text-[#8A7043] uppercase">Gold Member</span>
@@ -198,11 +223,50 @@ export default function AccountPage() {
                 </div>
               </div>
             </FadeInSection>
+
+            {/* Bespoke Concierge Widget */}
+            <FadeInSection delay={50}>
+              <div className="bg-white border border-[#8A7043]/30 rounded-xl p-6 shadow-sm flex flex-col w-full">
+                <div className="flex justify-between items-start border-b border-[#0E332E]/10 pb-3 mb-4">
+                  <div>
+                    <h3 className="font-heading text-xl text-[#0E332E]">Bespoke Concierge</h3>
+                    <p className="text-[10px] text-[#0E332E]/60 tracking-wider mt-1">Your dedicated luxury experience</p>
+                  </div>
+                  <Calendar size={20} className="text-[#8A7043]" strokeWidth={1.5} />
+                </div>
+                
+                <div className="flex flex-col gap-3 flex-1 justify-center">
+                  <div className="flex items-center justify-between mb-1">
+                    <div className="text-[9px] font-bold tracking-[0.15em] text-[#0E332E]/50 uppercase">Next Private Viewing</div>
+                    <span className="text-[8px] font-bold tracking-widest text-[#8A7043] uppercase bg-[#8A7043]/10 px-2 py-1 rounded">Upcoming</span>
+                  </div>
+                  
+                  <div className="flex items-center gap-3">
+                    <Calendar size={14} className="text-[#8A7043]" />
+                    <span className="text-sm font-medium text-[#0E332E]">18 August 2026</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <Clock size={14} className="text-[#8A7043]" />
+                    <span className="text-sm font-medium text-[#0E332E]">2:00 PM</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <MapPin size={14} className="text-[#8A7043]" />
+                    <span className="text-sm font-medium text-[#0E332E]">Flagship Boutique</span>
+                  </div>
+                </div>
+                
+                <div className="mt-5 text-right pt-3 border-t border-[#0E332E]/5">
+                  <Link href="/account/appointments" className="text-[9px] font-bold tracking-[0.15em] text-[#8A7043] uppercase hover:text-[#0E332E] transition-colors inline-flex items-center gap-1 group">
+                    View Appointments <ChevronRight size={12} className="group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                </div>
+              </div>
+            </FadeInSection>
           </div>
 
           {/* Gold Savings Plan (Right) */}
           <div className="flex flex-col h-full">
-            <FadeInSection delay={100}>
+            <FadeInSection delay={100} className="h-full">
               <div className="bg-[#0E332E] rounded-xl p-6 text-white shadow-2xl relative overflow-hidden h-full flex flex-col justify-between min-h-[350px]">
                 <div className="absolute top-0 right-0 w-48 h-48 bg-[#8A7043] rounded-full filter blur-[100px] opacity-20 pointer-events-none"></div>
 
@@ -241,33 +305,32 @@ export default function AccountPage() {
                 </div>
 
                 {/* MIDDLE ROW: Calculation & Projected Value */}
-                <div className="grid md:grid-cols-3 gap-4 mb-6 relative z-10">
+                <div className="grid md:grid-cols-3 gap-4 mb-6 relative z-10 flex-1">
 
                   {/* Calculation Breakdown (Left, takes up 2 cols) */}
-                  <div className="md:col-span-2 bg-black/20 rounded-lg p-3 md:p-4 text-[10px] md:text-[11px] text-white/70 tracking-wide border border-white/5 flex flex-col justify-center space-y-2">
-                    <div className="flex justify-between">
+                  <div className="md:col-span-2 bg-black/20 rounded-lg p-5 md:p-6 text-xs md:text-sm text-white/70 tracking-wide border border-white/5 flex flex-col justify-center space-y-4">
+                    <div className="flex justify-between items-center">
                       <span>Base Savings:</span>
-                      <span className="flex items-baseline gap-[2px]">₹<Odometer value={baseSavings} /></span>
+                      <span className="flex items-center gap-[4px] font-heading text-base md:text-lg text-white">₹<Odometer value={baseSavings} /></span>
                     </div>
-                    <div className="flex justify-between">
+                    <div className="flex justify-between items-center">
                       <span>12-Month Contribution:</span>
-                      <span className="flex items-baseline gap-[2px]">₹<Odometer value={yearlyContribution} /></span>
+                      <span className="flex items-center gap-[4px] font-heading text-base md:text-lg text-white">₹<Odometer value={yearlyContribution} /></span>
                     </div>
-                    <div className="flex justify-between text-[#8A7043] font-bold">
+                    <div className="flex justify-between items-center text-[#8A7043] font-bold">
                       <span>Heritage Bonus (8% APY):</span>
-                      <span className="flex items-baseline gap-[2px]">+ ₹<Odometer value={interestBonus} /></span>
+                      <span className="flex items-center gap-[4px] font-heading text-base md:text-lg">+ ₹<Odometer value={interestBonus} /></span>
                     </div>
                   </div>
 
                   {/* Projected Value (Right, takes up 1 col) */}
-                  <div className="bg-black/20 rounded-lg border border-white/10 p-3 md:p-4 flex flex-col items-center justify-center text-center">
-                    <h5 className="text-[9px] font-bold tracking-[0.1em] text-white/60 uppercase mb-2">Projected Value (1 Yr)</h5>
-                    <div className="text-xl md:text-2xl font-heading text-white flex items-baseline gap-1">
-                      ₹<Odometer value={finalValue} />
+                  <div className="bg-black/20 rounded-lg border border-white/10 p-5 md:p-6 flex flex-col items-center justify-center text-center">
+                    <h5 className="text-[10px] font-bold tracking-[0.1em] text-white/60 uppercase mb-3">Projected Value (1 Yr)</h5>
+                    <div className="font-heading text-3xl md:text-4xl text-white flex items-center justify-center gap-1 mb-2">
+                      <span className="text-[#8A7043]">₹</span>
+                      <Odometer value={finalValue} />
                     </div>
-                    <div className="text-[#8A7043] font-bold mt-1 text-xs tracking-wider">
-                      ~{goldEquivalent}g
-                    </div>
+                    <p className="text-[#8A7043] text-xs font-medium tracking-widest">~{goldEquivalent}g</p>
                   </div>
                 </div>
 
@@ -452,7 +515,7 @@ export default function AccountPage() {
         {/* ROW 4: Icon Grid Menu */}
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 pb-12">
           <FadeInSection delay={500}>
-            <Link href="/account/wishlist" className="bg-white border border-[#8A7043]/30 rounded-xl p-4 flex flex-col items-center justify-center text-center shadow-sm hover:border-[#8A7043] hover:shadow-md transition-all cursor-pointer group h-full">
+            <Link href="/wishlist" className="bg-white border border-[#8A7043]/30 rounded-xl p-4 flex flex-col items-center justify-center text-center shadow-sm hover:border-[#8A7043] hover:shadow-md transition-all cursor-pointer group h-full">
               <Heart className="text-[#8A7043] mb-2 group-hover:scale-110 transition-transform" size={20} strokeWidth={1.5} />
               <span className="text-[9px] font-bold tracking-[0.15em] text-[#0E332E] uppercase">Wishlist</span>
             </Link>
@@ -490,25 +553,98 @@ export default function AccountPage() {
         </div>
       </div>
 
-      {/* Reschedule Modal */}
+      {/* Extended Reschedule Modal */}
       {showRescheduleModal && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm px-4">
-          <div className="bg-[#F9F6F0] p-6 rounded-xl w-full max-w-md shadow-2xl animate-in zoom-in-95 duration-200">
-            <h3 className="font-heading text-2xl text-[#0E332E] mb-4">Reschedule Appointment</h3>
-            <p className="text-sm text-[#0E332E]/70 mb-4">Change the details of your appointment at the Mayfair Flagship Store.</p>
-            <div className="space-y-4 mb-6">
-              <div>
-                <label className="text-[10px] font-bold tracking-widest text-[#8A7043] uppercase block mb-1">New Date</label>
-                <input type="date" className="w-full bg-white border border-[#0E332E]/10 rounded-lg p-2 text-sm text-[#0E332E] outline-none focus:border-[#8A7043]" />
-              </div>
-              <div>
-                <label className="text-[10px] font-bold tracking-widest text-[#8A7043] uppercase block mb-1">New Time</label>
-                <input type="time" className="w-full bg-white border border-[#0E332E]/10 rounded-lg p-2 text-sm text-[#0E332E] outline-none focus:border-[#8A7043]" />
-              </div>
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm px-4 overflow-y-auto pt-20 pb-10">
+          <div className="bg-white p-6 md:p-10 rounded-none md:rounded-xl w-full max-w-2xl shadow-2xl animate-in zoom-in-95 duration-200">
+            <div className="flex justify-between items-center mb-10 border-b border-[#0E332E]/10 pb-4">
+              <h3 className="font-heading text-2xl text-[#0E332E]">Reschedule Appointment</h3>
+              <button onClick={() => setShowRescheduleModal(false)} className="text-[#0E332E]/50 hover:text-[#0E332E] transition-colors">
+                <X size={24} />
+              </button>
             </div>
-            <div className="flex justify-end gap-3">
-              <button onClick={() => setShowRescheduleModal(false)} className="px-4 py-2 border border-[#0E332E]/20 text-[#0E332E] text-xs font-bold uppercase tracking-wider rounded hover:bg-black/5 transition-colors">Cancel</button>
-              <button onClick={() => { alert('Appointment Rescheduled!'); setShowRescheduleModal(false); }} className="px-4 py-2 bg-[#0E332E] text-white text-xs font-bold uppercase tracking-wider rounded hover:bg-[#0a2420] transition-colors">Confirm New Time</button>
+            
+            <div className="space-y-12">
+              {/* Section 1 */}
+              <div>
+                <h4 className="text-[11px] font-bold tracking-[0.2em] text-[#8A7043] uppercase mb-8 flex items-center gap-3">
+                  <span className="text-[#0E332E]">1.</span> Select Boutique & Timing
+                </h4>
+                
+                <div className="space-y-8">
+                  <div>
+                    <label className="text-[9px] font-bold tracking-[0.15em] text-[#0E332E]/60 uppercase flex items-center gap-2 mb-3">
+                      <MapPin size={12} /> Domino Boutique Location
+                    </label>
+                    <select className="w-full bg-transparent border-b border-[#0E332E]/20 pb-3 text-sm text-[#0E332E] outline-none focus:border-[#8A7043] appearance-none cursor-pointer relative">
+                      <option value="">Select a location...</option>
+                      <option value="mayfair">Mayfair Flagship Store, London</option>
+                      <option value="paris">Paris Boutique</option>
+                      <option value="newyork">New York 5th Ave</option>
+                    </select>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                      <label className="text-[9px] font-bold tracking-[0.15em] text-[#0E332E]/60 uppercase flex items-center gap-2 mb-3">
+                        <Calendar size={12} /> Date
+                      </label>
+                      <input type="date" className="w-full bg-transparent border-b border-[#0E332E]/20 pb-3 text-sm text-[#0E332E] outline-none focus:border-[#8A7043] cursor-pointer" />
+                    </div>
+                    <div>
+                      <label className="text-[9px] font-bold tracking-[0.15em] text-[#0E332E]/60 uppercase flex items-center gap-2 mb-3">
+                        <Clock size={12} /> Time Preference
+                      </label>
+                      <select className="w-full bg-transparent border-b border-[#0E332E]/20 pb-3 text-sm text-[#0E332E] outline-none focus:border-[#8A7043] appearance-none cursor-pointer">
+                        <option value="">Select a time...</option>
+                        <option value="morning">Morning (10 AM - 12 PM)</option>
+                        <option value="afternoon">Afternoon (1 PM - 4 PM)</option>
+                        <option value="evening">Evening (4 PM - 7 PM)</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Section 2 */}
+              <div className="border-t border-[#0E332E]/10 pt-10">
+                <h4 className="text-[11px] font-bold tracking-[0.2em] text-[#8A7043] uppercase mb-8 flex items-center gap-3">
+                  <span className="text-[#0E332E]">2.</span> Your Information
+                </h4>
+                
+                <div className="space-y-8">
+                  <div>
+                    <label className="text-[9px] font-bold tracking-[0.15em] text-[#0E332E]/60 uppercase flex items-center gap-2 mb-3">
+                      <User size={12} /> Full Name
+                    </label>
+                    <input type="text" placeholder="Your name" defaultValue={userName} className="w-full bg-transparent border-b border-[#0E332E]/20 pb-3 text-sm text-[#0E332E] outline-none focus:border-[#8A7043]" />
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                      <label className="text-[9px] font-bold tracking-[0.15em] text-[#0E332E]/60 uppercase mb-3 block">
+                        Email Address
+                      </label>
+                      <input type="email" placeholder="email@example.com" defaultValue="eleanor@example.com" className="w-full bg-transparent border-b border-[#0E332E]/20 pb-3 text-sm text-[#0E332E] outline-none focus:border-[#8A7043]" />
+                    </div>
+                    <div>
+                      <label className="text-[9px] font-bold tracking-[0.15em] text-[#0E332E]/60 uppercase mb-3 block">
+                        Phone Number
+                      </label>
+                      <input type="tel" placeholder="+91" defaultValue="+91 " className="w-full bg-transparent border-b border-[#0E332E]/20 pb-3 text-sm text-[#0E332E] outline-none focus:border-[#8A7043]" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="pt-4">
+                <button 
+                  onClick={() => { alert('Appointment Confirmed!'); setShowRescheduleModal(false); }} 
+                  className="w-full py-5 bg-[#0E332E] text-white text-xs font-bold uppercase tracking-[0.2em] hover:bg-[#0a2420] transition-colors shadow-lg"
+                >
+                  Confirm Appointment
+                </button>
+              </div>
             </div>
           </div>
         </div>

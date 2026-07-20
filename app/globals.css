@@ -123,3 +123,16 @@ h1, h2, h3, h4, h5, h6 {
   transform: translateY(0);
   transition: opacity 300ms, transform 300ms;
 }
+
+/* Premium Shadow Animation for Boxes */
+.shadow-sm, .shadow-md, .shadow-lg, .shadow-xl, .shadow-2xl {
+  transition: box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+div.shadow-sm:hover, div.shadow-md:hover, div.shadow-lg:hover,
+div.shadow-xl:hover, div.shadow-2xl:hover,
+a.shadow-sm:hover, a.shadow-md:hover, a.shadow-lg:hover,
+a.shadow-xl:hover, a.shadow-2xl:hover {
+  transform: translateY(-3px) !important;
+  box-shadow: 0 20px 40px -10px rgba(138, 112, 67, 0.15), 0 10px 20px -5px rgba(14, 51, 46, 0.1) !important;
+}

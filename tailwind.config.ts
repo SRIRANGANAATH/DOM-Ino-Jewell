@@ -18,6 +18,9 @@ const config: Config = {
         'accent-bronze': '#8A7043',
       },
       fontFamily: {
+        sans: ['var(--font-inter)', 'sans-serif'],
+        serif: ['var(--font-playfair-display)', 'serif'],
+        mono: ['var(--font-inter)', 'monospace'],
         heading: ['var(--font-playfair-display)', 'serif'],
         body: ['var(--font-inter)', 'sans-serif'],
       },

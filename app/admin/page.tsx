@@ -136,7 +136,7 @@ export default function AdminPage() {
             <div key={p.id} className="bg-white shadow-sm hover:shadow-xl transition-shadow duration-300 group overflow-hidden border border-gray-100">
               <div className="h-48 bg-gray-100 relative overflow-hidden flex items-center justify-center">
                 {p.image ? (
-                  <div className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style={{ backgroundImage: `url(${p.image})` }}></div>
+                  <div className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style={{ backgroundImage: `url('${p.image}')` }}></div>
                 ) : (
                   <ImageIcon className="text-gray-300" size={48} />
                 )}

@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import HeroCarousel from '@/components/home/HeroCarousel';
 
 export default function HomePage() {
   const [rates, setRates] = useState<any[]>([]);
@@ -40,6 +41,7 @@ export default function HomePage() {
 
   return (
     <main>
+      <HeroCarousel />
       {/* Hero Section */}
       <section className="relative h-[80vh] w-full flex flex-col items-center justify-center text-center px-4 overflow-hidden">
         {/* We use a placeholder background color if the image is missing, but assume public/images/hero-pearl-necklace.jpg will be added */}
@@ -110,7 +112,7 @@ export default function HomePage() {
       </section>
 
       {/* Featured Story */}
-      <section className="bg-[#0B2B26] text-[#F9F6F0]">
+      <section className="bg-[#0B2B26] text-[#F9F6F0] mb-16">
         <div className="container py-20 px-4 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div className="w-full h-[500px] bg-[#d9d9d9] relative">
              <div 

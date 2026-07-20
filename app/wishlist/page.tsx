@@ -99,7 +99,7 @@ export default function WishlistPage() {
           </div>
           
           <div className="grid sm:grid-cols-2 gap-4">
-            <button className="bg-[#8A7043] text-white py-4 text-[11px] font-bold tracking-[0.15em] uppercase hover:bg-[#0E332E] transition-colors shadow-sm">
+            <button onClick={handleCopyLink} className="bg-[#8A7043] text-white py-4 text-[11px] font-bold tracking-[0.15em] uppercase hover:bg-[#0E332E] transition-colors shadow-sm">
               SHARE WISHLIST
             </button>
             <Link href="/shop" className="block w-full">
