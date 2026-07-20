@@ -29,6 +29,7 @@ body {
   padding: 0;
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
+  cursor: url('/diamond-cursor.svg') 16 16, auto;
 }
 
 *, *::before, *::after {
@@ -38,6 +39,7 @@ body {
 a {
   color: inherit;
   text-decoration: none;
+  cursor: url('/diamond-cursor.svg') 16 16, pointer;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -79,7 +81,7 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 500;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  cursor: pointer;
+  cursor: url('/diamond-cursor.svg') 16 16, pointer;
   transition: all 0.3s ease;
   border: none;
   font-family: var(--font-body);

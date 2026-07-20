@@ -8,6 +8,7 @@ import {
 import { useRouter } from 'next/navigation';
 import Odometer from '@/components/Odometer';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 
 function ContributionWheel({ value, onChange }: { value: number, onChange: (v: number) => void }) {
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -341,9 +342,14 @@ export default function AccountPage() {
                     <span className="text-white font-bold">85%</span>
                   </div>
                   <div className="w-full h-1 bg-black/40 rounded-full overflow-hidden mb-2">
-                    <div className="h-full bg-[#8A7043] w-[85%] rounded-full relative">
-                      <div className="absolute top-0 right-0 bottom-0 w-20 bg-gradient-to-r from-transparent to-white/30"></div>
-                    </div>
+                    <motion.div 
+                      initial={{ width: 0 }}
+                      animate={{ width: "85%" }}
+                      transition={{ duration: 1.5, ease: "easeOut", delay: 0.5 }}
+                      className="h-full bg-[#8A7043] rounded-full relative overflow-hidden"
+                    >
+                      <div className="absolute top-0 bottom-0 -left-full w-20 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-shimmer-slide"></div>
+                    </motion.div>
                   </div>
                   <p className="text-[9px] text-white/50 italic tracking-wide">Next reward unlock: Exclusive Bespoke Consultation</p>
                 </div>

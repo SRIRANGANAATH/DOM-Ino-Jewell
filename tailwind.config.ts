@@ -24,6 +24,20 @@ const config: Config = {
         heading: ['var(--font-playfair-display)', 'serif'],
         body: ['var(--font-inter)', 'sans-serif'],
       },
+      keyframes: {
+        shimmer: {
+          "0%": { backgroundPosition: "200% 0" },
+          "100%": { backgroundPosition: "-200% 0" },
+        },
+        'shimmer-slide': {
+          '0%': { transform: 'translateX(-100%)' },
+          '100%': { transform: 'translateX(300%)' },
+        }
+      },
+      animation: {
+        shimmer: "shimmer 3s ease-in-out infinite",
+        'shimmer-slide': "shimmer-slide 2s infinite linear",
+      },
     },
   },
   plugins: [],

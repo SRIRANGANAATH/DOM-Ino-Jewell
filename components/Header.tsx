@@ -1,17 +1,25 @@
 "use client";
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Search, LogIn, UserPlus, User, X } from 'lucide-react';
+import { Search, LogIn, UserPlus, User, X, TrendingUp } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Header() {
   const pathname = usePathname();
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
     setIsLoggedIn(document.cookie.includes('auth_token'));
+    
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, [pathname]);
 
   const navItems = [
@@ -32,7 +40,7 @@ export default function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-[#F9F6F0]/95 backdrop-blur-md border-b border-[#0E332E]/10 shadow-sm flex flex-col">
+    <header className={`sticky top-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-[#F9F6F0]/90 backdrop-blur-xl shadow-md py-0' : 'bg-[#F9F6F0]/95 backdrop-blur-md shadow-sm py-1'} flex flex-col`}>
       <div className="w-full px-4 md:px-12 lg:px-16 flex justify-between items-center h-[85px]">
 
         {/* Left Side: Tagline */}
@@ -54,25 +62,42 @@ export default function Header() {
 
           {/* Search Bar / Icon */}
           <div className="relative flex items-center">
-            {isSearchOpen ? (
-              <form onSubmit={handleSearch} className="flex items-center animate-in slide-in-from-right-4 fade-in duration-300">
-                <input
-                  type="text"
-                  autoFocus
-                  placeholder="Search collections..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-32 md:w-48 lg:w-64 border-b-2 border-[#8A7043] bg-transparent outline-none text-sm px-2 py-1 text-[#0E332E] placeholder:text-[#0E332E]/40 font-medium transition-all"
-                />
-                <button type="button" onClick={() => setIsSearchOpen(false)} className="ml-3 text-[#0E332E]/70 hover:text-[#8A7043] transition-colors">
-                  <X size={22} />
-                </button>
-              </form>
-            ) : (
-              <button onClick={() => setIsSearchOpen(true)} className="text-[#0E332E]/80 hover:text-[#8A7043] transition-colors">
-                <Search size={22} />
-              </button>
-            )}
+            <AnimatePresence>
+              {isSearchOpen && (
+                <motion.div 
+                  initial={{ opacity: 0, width: 0 }}
+                  animate={{ opacity: 1, width: "auto" }}
+                  exit={{ opacity: 0, width: 0 }}
+                  className="absolute right-8 top-1/2 -translate-y-1/2 bg-white shadow-xl border border-[#0E332E]/10 rounded-lg overflow-hidden flex flex-col w-[300px]"
+                >
+                  <form onSubmit={handleSearch} className="flex items-center px-3 py-2 border-b border-[#0E332E]/10">
+                    <input
+                      type="text"
+                      autoFocus
+                      placeholder="Search collections..."
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      className="flex-1 bg-transparent outline-none text-sm px-2 py-1 text-[#0E332E] placeholder:text-[#0E332E]/40 font-medium"
+                    />
+                  </form>
+                  <div className="p-2 bg-[#FAF8F5]">
+                    <p className="text-[10px] uppercase tracking-widest text-[#8A7043] font-bold mb-2 px-2 flex items-center gap-1"><TrendingUp size={12}/> Trending Suggestions</p>
+                    <ul className="text-xs font-medium text-[#4A5568] flex flex-col">
+                      <li className="px-2 py-1.5 hover:bg-white hover:text-[#0B2B26] cursor-pointer transition-colors rounded">22K Gold Chains</li>
+                      <li className="px-2 py-1.5 hover:bg-white hover:text-[#0B2B26] cursor-pointer transition-colors rounded">Bridal Sets</li>
+                      <li className="px-2 py-1.5 hover:bg-white hover:text-[#0B2B26] cursor-pointer transition-colors rounded">Diamond Studs</li>
+                    </ul>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+            
+            <button 
+              onClick={() => setIsSearchOpen(!isSearchOpen)} 
+              className="text-[#0E332E]/80 hover:text-[#8A7043] transition-colors relative z-10 p-1"
+            >
+              {isSearchOpen ? <X size={22} /> : <Search size={22} />}
+            </button>
           </div>
 
           {/* Auth */}

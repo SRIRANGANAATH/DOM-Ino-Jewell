@@ -6,6 +6,8 @@ import BottomNavbar from "../components/BottomNavbar";
 import { StoreProvider } from "@/context/StoreContext";
 
 import AIChatBot from "../components/AIChatBot";
+import { Toaster } from 'sonner';
+import CursorGlow from "../components/CursorGlow";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -40,6 +42,8 @@ export default function RootLayout({
           <Footer />
           <BottomNavbar />
           <AIChatBot />
+          <CursorGlow />
+          <Toaster position="bottom-center" toastOptions={{ style: { background: '#0B2B26', color: '#F9F6F0', border: '1px solid rgba(197, 158, 63, 0.3)' } }} />
         </StoreProvider>
       </body>
     </html>

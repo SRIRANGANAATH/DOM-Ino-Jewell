@@ -7,6 +7,7 @@ import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import GoldParticles from "@/components/GoldParticles";
 
 const slides = [
   {
@@ -249,27 +250,37 @@ export default function HeroCarousel() {
 
   return (
     <section className="relative w-full h-[85vh] sm:h-[90vh] min-h-[600px] overflow-hidden bg-[#FAF8F5]">
+      <GoldParticles />
       <div className="overflow-hidden h-full" ref={emblaRef}>
         <div className="flex h-full">
-          {slides.map((slide, index) => (
+          {slides.map((slide, index) => {
+            const isActive = index === selectedIndex;
+            return (
             <div
               key={slide.id}
-              className="relative flex-[0_0_100%] min-w-0 h-full"
+              className="relative flex-[0_0_100%] min-w-0 h-full overflow-hidden"
             >
-              <Image
-                src={slide.image}
-                alt={slide.headline}
-                fill
-                priority={index === 0}
-                className={
-                  slide.layout === "slide2"
-                    ? "object-cover sm:object-contain sm:object-left"
-                    : "object-cover"
-                }
-              />
+              <motion.div
+                initial={{ scale: 1 }}
+                animate={{ scale: isActive ? 1.1 : 1 }}
+                transition={{ duration: 7, ease: "linear" }}
+                className="absolute inset-0 w-full h-full origin-center"
+              >
+                <Image
+                  src={slide.image}
+                  alt={slide.headline}
+                  fill
+                  priority={index === 0}
+                  className={
+                    slide.layout === "slide2"
+                      ? "object-cover sm:object-contain sm:object-left"
+                      : "object-cover"
+                  }
+                />
+              </motion.div>
               {renderSlideContent(slide, index)}
             </div>
-          ))}
+          )})}
         </div>
       </div>
 

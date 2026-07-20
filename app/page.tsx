@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import HeroCarousel from '@/components/home/HeroCarousel';
+import { motion } from 'framer-motion';
 
 export default function HomePage() {
   const [rates, setRates] = useState<any[]>([]);
@@ -89,39 +90,69 @@ export default function HomePage() {
       </div>
 
       {/* Info Section */}
-      <section className="bg-[#FAF8F5] py-24 px-4 border-y border-[#0B2B26]/5">
+      <section className="bg-[#FAF8F5] py-24 px-4 border-y border-[#0B2B26]/5 overflow-hidden">
         <div className="container grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 max-w-7xl mx-auto">
-          <div className="bg-white p-10 md:p-12 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-[#0B2B26]/5 hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] hover:-translate-y-1 transition-all duration-300">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
+            viewport={{ once: true, margin: "-100px" }}
+            className="bg-white p-10 md:p-12 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-[#0B2B26]/5 hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] hover:-translate-y-1 transition-all duration-300"
+          >
             <h3 className="text-2xl mb-6 text-[#0B2B26]" style={{ fontFamily: 'var(--font-heading)' }}>Pure Craftsmanship</h3>
             <p className="text-[#4A5568] leading-relaxed text-sm">
               All designs are cast in 100% ethically sourced recycled gold. We refuse mass assembly lines, employing multi-generational master smiths instead.
             </p>
-          </div>
-          <div className="bg-white p-10 md:p-12 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-[#0B2B26]/5 hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] hover:-translate-y-1 transition-all duration-300">
+          </motion.div>
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
+            viewport={{ once: true, margin: "-100px" }}
+            className="bg-white p-10 md:p-12 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-[#0B2B26]/5 hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] hover:-translate-y-1 transition-all duration-300"
+          >
             <h3 className="text-2xl mb-6 text-[#0B2B26]" style={{ fontFamily: 'var(--font-heading)' }}>Full Transparency</h3>
             <p className="text-[#4A5568] leading-relaxed text-sm">
               We break down the cost of every single gram of gold, diamond weight, and artisan labor so you know exactly where your investment resides.
             </p>
-          </div>
-          <div className="bg-white p-10 md:p-12 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-[#0B2B26]/5 hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] hover:-translate-y-1 transition-all duration-300">
+          </motion.div>
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut", delay: 0.3 }}
+            viewport={{ once: true, margin: "-100px" }}
+            className="bg-white p-10 md:p-12 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-[#0B2B26]/5 hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] hover:-translate-y-1 transition-all duration-300"
+          >
             <h3 className="text-2xl mb-6 text-[#0B2B26]" style={{ fontFamily: 'var(--font-heading)' }}>The Forever Heritage</h3>
             <p className="text-[#4A5568] leading-relaxed text-sm">
               Registered with state certifications, every item is backed by our lifetime buyback guarantee and gold purity certification.
             </p>
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Featured Story */}
       <section className="bg-[#0B2B26] text-[#F9F6F0]">
         <div className="container py-20 px-4 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          <div className="w-full h-[500px] bg-[#d9d9d9] relative">
+          <motion.div 
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            viewport={{ once: true, margin: "-100px" }}
+            className="w-full h-[500px] bg-[#d9d9d9] relative group overflow-hidden"
+          >
              <div 
-              className="absolute inset-0 bg-cover bg-center"
+              className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-110"
               style={{ backgroundImage: `url(${featuredProduct?.image || '/images/Necklace.jpg'})` }}
             ></div>
-          </div>
-          <div className="pl-0 md:pl-10">
+          </motion.div>
+          <motion.div 
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+            viewport={{ once: true, margin: "-100px" }}
+            className="pl-0 md:pl-10"
+          >
             <h4 className="text-[#C59E3F] tracking-widest uppercase text-xs font-bold mb-6">Featured Story</h4>
             <h2 className="text-4xl md:text-5xl mb-8 leading-tight" style={{ fontFamily: 'var(--font-heading)' }}>
               {featuredProduct ? featuredProduct.name : 'The Aura Necklace:'}<br/>Elegance Redefined
@@ -130,14 +161,15 @@ export default function HomePage() {
               {featuredProduct ? featuredProduct.description : 'Carved delicately with high-polished geometry, the Elegant Gold Necklace is built for slow lifetimes. Cast with a traditional BIS Hallmark ensuring authentic 22K pure yellow gold.'}
             </p>
             <div className="flex gap-4">
-              <Link href={featuredProduct ? `/product/${featuredProduct.id}` : '/shop'} className="bg-[#C59E3F] flex items-center justify-center hover:bg-[#b58d2f] text-white px-8 py-4 uppercase text-xs tracking-widest font-bold transition-colors">
-                Browse Piece
+              <Link href={featuredProduct ? `/product/${featuredProduct.id}` : '/shop'} className="relative overflow-hidden group bg-[#C59E3F] flex items-center justify-center hover:bg-[#b58d2f] text-white px-8 py-4 uppercase text-xs tracking-widest font-bold transition-colors">
+                <span className="relative z-10">Browse Piece</span>
+                <div className="absolute inset-0 h-full w-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-shimmer-slide" />
               </Link>
               <Link href="/about" className="border flex items-center justify-center border-white text-white hover:bg-white/10 px-8 py-4 uppercase text-xs tracking-widest font-bold transition-colors">
                 Our Heritage
               </Link>
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
     </main>
