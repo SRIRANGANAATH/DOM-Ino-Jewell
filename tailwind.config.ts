@@ -32,11 +32,16 @@ const config: Config = {
         'shimmer-slide': {
           '0%': { transform: 'translateX(-100%)' },
           '100%': { transform: 'translateX(300%)' },
+        },
+        'spin-slow-3d': {
+          '0%': { transform: 'rotateY(0deg)' },
+          '100%': { transform: 'rotateY(360deg)' },
         }
       },
       animation: {
         shimmer: "shimmer 3s ease-in-out infinite",
         'shimmer-slide': "shimmer-slide 2s infinite linear",
+        'spin-slow-3d': "spin-slow-3d 4s linear infinite",
       },
     },
   },
